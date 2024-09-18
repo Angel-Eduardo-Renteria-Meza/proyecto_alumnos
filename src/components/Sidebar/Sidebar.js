@@ -1,37 +1,19 @@
-/*!
-
-=========================================================
-* Paper Dashboard React - v1.3.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Nav } from "reactstrap";
-// javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
-
 import logo from "logo_new_2022.png";
 
-var ps;
+let ps;
 
 function Sidebar(props) {
   const sidebar = React.useRef();
-  // verifies if routeName is the one active (in browser input)
+
+  // Verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
     return props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
   };
+
   React.useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(sidebar.current, {
@@ -44,7 +26,8 @@ function Sidebar(props) {
         ps.destroy();
       }
     };
-  });
+  }, []);
+
   return (
     <div
       className="sidebar"
@@ -57,14 +40,14 @@ function Sidebar(props) {
           className="simple-text logo-mini"
         >
           <div className="logo-img">
-            <img src={logo} alt="react-logo" />
+            <img src={logo} alt="React Logo" />
           </div>
         </a>
         <a
-          
+          href="/" // Añadido href para la accesibilidad
           className="simple-text logo-normal"
         >
-           WEB 4.0
+          WEB 4.0
         </a>
       </div>
       <div className="sidebar-wrapper" ref={sidebar}>
