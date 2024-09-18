@@ -37,84 +37,50 @@ import {
   dashboardEmailStatisticsChart,
   dashboardNASDAQChart
 } from "variables/charts.js";
+import { alumns } from "const/alumns";
 
 function Dashboard() {
   return (
     <>
       <div className="content">
-        <Row>
-          <Col lg="3" md="6" sm="6">
-            <Card className="card-stats">
-              <CardBody>
-                <Row>
-                  <Col md="4" xs="5">
-                    <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-globe text-warning" />
-                    </div>
-                  </Col>
-                  <Col md="8" xs="7">
-                    <div className="numbers">
-                      <p className="card-category">ALUMNO 1</p>
-                      <CardTitle tag="p">JUAN PEREZ</CardTitle>
-                      <p />
-                    </div>
-                  </Col>
-                </Row>
-              </CardBody>
-              <CardFooter>
-                <hr />
-                <div className="stats">
+      <Row>
+  {alumns &&
+    alumns.map((entry) => (
+      <Col key={entry.id} lg="3" md="6" sm="6">
+        <Card className="card-stats">
+          <CardBody>
+            <Row>
+              <Col md="4" xs="5">
+                <div className="icon-big text-center icon-warning">
+                  <i className="nc-icon nc-globe text-warning" />
                 </div>
-                <a
-                  href="/"
-                  className="simple-text logo-mini"
-                >
-                  <div className="logo-img">
-                    <img src={hombre} alt="react-logo" />
-                  </div>
-                </a>
-              </CardFooter>
-            </Card>
-          </Col>
+              </Col>
+              <Col md="8" xs="7">
+                <div className="numbers">
+                  <p className="card-category">ALUMNO {entry.id}</p>
+                  <CardTitle tag="p">{entry.nombre}</CardTitle>
+                  <p />
+                </div>
+              </Col>
+            </Row>
+          </CardBody>
+          <CardFooter>
+            <hr />
+            <div className="stats">
+              {/* Puedes agregar estadísticas o información aquí */}
+            </div>
+            <a href="/" className="simple-text logo-mini">
+              <div className="logo-img">
+                <img src={`${process.env.PUBLIC_URL}${entry.foto}`} alt={`${entry.nombre}-photo`} />
+              </div>
+            </a>
+          </CardFooter>
+        </Card>
+      </Col>
+    ))}
+</Row>
 
-          <Col lg="3" md="6" sm="6">
-            <Card className="card-stats">
-              <CardBody>
-                <Row>
-                  <Col md="4" xs="5">
-                    <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-globe text-warning" />
-                    </div>
-                  </Col>
-                  <Col md="8" xs="7">
-                    <div className="numbers">
-                      <p className="card-category">ALUMNO 2</p>
-                      <CardTitle tag="p">SANDRA LÓPEZ</CardTitle>
-                      <p />
-                    </div>
-                  </Col>
-                </Row>
-              </CardBody>
-              <CardFooter>
-                <hr />
-                <div className="stats">
-                </div>
-                <a
-                  href="/"
-                  className="simple-text logo-mini"
-                >
-                  <div className="logo-img">
-                    <img src={mujer} alt="react-logo" />
-                  </div>
-                </a>
-              </CardFooter>
-            </Card>
-          </Col>         
-        </Row>
-        <Row>
-          
-          
-        </Row>
+        
       </div>
     </>
   );
